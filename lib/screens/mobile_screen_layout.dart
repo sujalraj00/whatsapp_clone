@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/colors.dart';
+import 'package:whatsapp_clone/widgets/contact_list.dart';
 
 class MobileScreenLayout extends StatelessWidget {
   const MobileScreenLayout({super.key});
@@ -8,7 +10,9 @@ class MobileScreenLayout extends StatelessWidget {
     return DefaultTabController(length: 3, 
     child: Scaffold(
       appBar: AppBar(
-        title: Text('WhatsApp', style: TextStyle(
+        backgroundColor: appBarColor,
+        elevation: 0,
+        title:const Text('WhatsApp', style: TextStyle(
           color: Colors.grey,
           fontSize: 20,
 
@@ -17,10 +21,30 @@ class MobileScreenLayout extends StatelessWidget {
         centerTitle: false,
         actions: [
           IconButton(onPressed: (){}, 
-          icon: Icon(Icons.search)),
+          icon:const Icon(Icons.search)),
           IconButton(onPressed: (){}, 
-          icon: Icon(Icons.more_vert, color: Colors.grey,)),
+          icon:const Icon(Icons.more_vert, color: Colors.grey,)),
         ],
-      )));
+        bottom: const TabBar(
+          indicatorColor: tabColor,
+          indicatorWeight: 4,
+          labelColor: tabColor,
+          unselectedLabelColor: Colors.grey,
+          labelStyle: TextStyle(fontWeight: FontWeight.bold),
+          tabs: [
+          Tab(text: 'Chats',),
+          Tab(text: 'Status',),
+          Tab(text: 'Calls',)
+        ]),
+      ),
+      body: const ContactsList(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        backgroundColor: tabColor,
+        child: const Icon(Icons.comment, color: Colors.white,),
+        ),
+        ),
+      
+      );
   }
 }
